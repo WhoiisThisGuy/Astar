@@ -3,7 +3,7 @@
 
 #include <QtCore/qglobal.h>
 
-#if defined(ASTAR_LIBRARY)
+#if defined(ASTAR_GLOBAL_H)
 #  define ASTAR_EXPORT Q_DECL_EXPORT
 #else
 #  define ASTAR_EXPORT Q_DECL_IMPORT

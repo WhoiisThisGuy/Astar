@@ -1,6 +1,6 @@
 #include "astar.h"
 
-int Astar::StartSearch(){
+int Astar::StartSearch(bool *abortFlag){
 
     src.row = gridcontroller->src.y;
     src.col = gridcontroller->src.x;
@@ -60,6 +60,7 @@ int Astar::StartSearch(){
 
                     isInTheOpenList[topNeighbour.row*numberOfColumns+topNeighbour.col] = true; //now it is on the open list
                     gridcontroller->setGridValue(topNeighbour.row,topNeighbour.col,5);
+                    ++(gridcontroller->numberOfVisitedNodes);
                 }
                 else{
                     topNeighbour.g = gValues[topNeighbour.row*numberOfColumns+topNeighbour.col];
@@ -93,7 +94,7 @@ int Astar::StartSearch(){
 
                 if(!isInTheOpenList[topRightNeighbour.row*numberOfColumns+topRightNeighbour.col]){ //if not on the open list then insert it
 
-                    topRightNeighbour.g = tempNode.g+sqrt(2);
+                    topRightNeighbour.g = tempNode.g+1.0;
                     topRightNeighbour.h = Hvalue(topRightNeighbour.row,dest.row,topRightNeighbour.col,dest.col);
                     topRightNeighbour.f = topRightNeighbour.g+topRightNeighbour.h;
                     gValues[topRightNeighbour.row*numberOfColumns+topRightNeighbour.col] = topRightNeighbour.g;
@@ -104,12 +105,13 @@ int Astar::StartSearch(){
 
                     isInTheOpenList[topRightNeighbour.row*numberOfColumns+topRightNeighbour.col] = true; //now it is on the open list
                     gridcontroller->setGridValue(topRightNeighbour.row,topRightNeighbour.col,5);
+                    ++(gridcontroller->numberOfVisitedNodes);
                 }
                 else{
                     topRightNeighbour.g = gValues[topRightNeighbour.row*numberOfColumns+topRightNeighbour.col];
                 }
                 double tempGScore = 0;
-                tempGScore = tempNode.g + sqrt(2);
+                tempGScore = tempNode.g + 1.0;
                 if(tempGScore < topRightNeighbour.g){
                     //this is a better path so change the data in the open_list for the neighbour
                     RemoveFromOpenList(topRightNeighbour); //remove from open_list
@@ -147,6 +149,7 @@ int Astar::StartSearch(){
 
                     isInTheOpenList[RightNeighbour.row*numberOfColumns+RightNeighbour.col] = true; //now it is on the open list
                     gridcontroller->setGridValue(RightNeighbour.row,RightNeighbour.col,5);
+                    ++(gridcontroller->numberOfVisitedNodes);
                 }
                 else{
                     RightNeighbour.g = gValues[RightNeighbour.row*numberOfColumns+RightNeighbour.col];
@@ -179,7 +182,7 @@ int Astar::StartSearch(){
 
                 if(!isInTheOpenList[BottomRightNeighbour.row*numberOfColumns+BottomRightNeighbour.col]){ //if not on the open list then insert it
 
-                    BottomRightNeighbour.g = tempNode.g+sqrt(2);
+                    BottomRightNeighbour.g = tempNode.g+1.0;
                     BottomRightNeighbour.h = Hvalue(BottomRightNeighbour.row,dest.row,BottomRightNeighbour.col,dest.col);
                     BottomRightNeighbour.f = BottomRightNeighbour.g+BottomRightNeighbour.h;
                     gValues[BottomRightNeighbour.row*numberOfColumns+BottomRightNeighbour.col] = BottomRightNeighbour.g;
@@ -190,12 +193,13 @@ int Astar::StartSearch(){
 
                     isInTheOpenList[BottomRightNeighbour.row*numberOfColumns+BottomRightNeighbour.col] = true; //now it is on the open list
                     gridcontroller->setGridValue(BottomRightNeighbour.row,BottomRightNeighbour.col,5);
+                    ++(gridcontroller->numberOfVisitedNodes);
                 }
                 else{
                     BottomRightNeighbour.g = gValues[BottomRightNeighbour.row*numberOfColumns+BottomRightNeighbour.col];
                 }
                 double tempGScore = 0;
-                tempGScore = tempNode.g + sqrt(2);
+                tempGScore = tempNode.g + 1.0;
                 if(tempGScore < BottomRightNeighbour.g){
                     //this is a better path so change the data in the open_list for the neighbour
                     RemoveFromOpenList(BottomRightNeighbour); //remove from open_list
@@ -233,6 +237,7 @@ int Astar::StartSearch(){
 
                     isInTheOpenList[BottomNeighbour.row*numberOfColumns+BottomNeighbour.col] = true; //now it is on the open list
                     gridcontroller->setGridValue(BottomNeighbour.row,BottomNeighbour.col,5);
+                    ++(gridcontroller->numberOfVisitedNodes);
                 }
                 else{
                     BottomNeighbour.g = gValues[BottomNeighbour.row*numberOfColumns+BottomNeighbour.col];
@@ -265,7 +270,7 @@ int Astar::StartSearch(){
 
                 if(!isInTheOpenList[BottomLeftNeighbour.row*numberOfColumns+BottomLeftNeighbour.col]){ //if not on the open list then insert it
 
-                    BottomLeftNeighbour.g = tempNode.g+sqrt(2);
+                    BottomLeftNeighbour.g = tempNode.g+1.0;
                     BottomLeftNeighbour.h = Hvalue(BottomLeftNeighbour.row,dest.row,BottomLeftNeighbour.col,dest.col);
                     BottomLeftNeighbour.f = BottomLeftNeighbour.g+BottomLeftNeighbour.h;
                     gValues[BottomLeftNeighbour.row*numberOfColumns+BottomLeftNeighbour.col] = BottomLeftNeighbour.g;
@@ -276,12 +281,13 @@ int Astar::StartSearch(){
 
                     isInTheOpenList[BottomLeftNeighbour.row*numberOfColumns+BottomLeftNeighbour.col] = true; //now it is on the open list
                     gridcontroller->setGridValue(BottomLeftNeighbour.row,BottomLeftNeighbour.col,5);
+                    ++(gridcontroller->numberOfVisitedNodes);
                 }
                 else{
                     BottomLeftNeighbour.g = gValues[BottomLeftNeighbour.row*numberOfColumns+BottomLeftNeighbour.col];
                 }
                 double tempGScore = 0;
-                tempGScore = tempNode.g + sqrt(2);
+                tempGScore = tempNode.g + 1.0;
                 if(tempGScore < BottomLeftNeighbour.g){
                     //this is a better path so change the data in the open_list for the neighbour
                     RemoveFromOpenList(BottomLeftNeighbour); //remove from open_list
@@ -319,6 +325,7 @@ int Astar::StartSearch(){
 
                     isInTheOpenList[LeftNeighbour.row*numberOfColumns+LeftNeighbour.col] = true; //now it is on the open list
                     gridcontroller->setGridValue(LeftNeighbour.row,LeftNeighbour.col,5);
+                    ++(gridcontroller->numberOfVisitedNodes);
                 }
                 else{
                     LeftNeighbour.g = gValues[LeftNeighbour.row*numberOfColumns+LeftNeighbour.col];
@@ -351,7 +358,7 @@ int Astar::StartSearch(){
 
                 if(!isInTheOpenList[topLeftNeighbour.row*numberOfColumns+topLeftNeighbour.col]){ //if not on the open list then insert it
 
-                    topLeftNeighbour.g = tempNode.g+sqrt(2);
+                    topLeftNeighbour.g = tempNode.g+1.0;
                     topLeftNeighbour.h = Hvalue(topLeftNeighbour.row,dest.row,topLeftNeighbour.col,dest.col);
                     topLeftNeighbour.f = topLeftNeighbour.g+topLeftNeighbour.h;
                     gValues[topLeftNeighbour.row*numberOfColumns+topLeftNeighbour.col] = topLeftNeighbour.g;
@@ -362,12 +369,13 @@ int Astar::StartSearch(){
 
                     isInTheOpenList[topLeftNeighbour.row*numberOfColumns+topLeftNeighbour.col] = true; //now it is on the open list
                     gridcontroller->setGridValue(topLeftNeighbour.row,topLeftNeighbour.col,5);
+                    ++(gridcontroller->numberOfVisitedNodes);
                 }
                 else{
                     topLeftNeighbour.g = gValues[topLeftNeighbour.row*numberOfColumns+topLeftNeighbour.col];
                 }
                 double tempGScore = 0;
-                tempGScore = tempNode.g + sqrt(2);
+                tempGScore = tempNode.g + 1.0;
                 if(tempGScore < topLeftNeighbour.g){
                     //this is a better path so change the data in the open_list for the neighbour
                     RemoveFromOpenList(topLeftNeighbour); //remove from open_list
@@ -393,7 +401,8 @@ int Astar::StartSearch(){
 
 }
 
-bool Astar::Init(const vector<string> Parameters){
+bool Astar::Init(const vector<string>& Parameters){
+    if(Parameters.size() == 0) return false;
 
     try{
         heuristic = Parameters.at(0); //Save heuristic name

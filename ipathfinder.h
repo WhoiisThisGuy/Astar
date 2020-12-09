@@ -11,11 +11,10 @@ class IPathfinder {
 
 public:
     virtual ~IPathfinder(){}
-    virtual int StartSearch() = 0;
-    virtual bool Init(vector<string> Parameters) = 0;
-    virtual vector<int> getPath() = 0;
+    virtual int StartSearch(bool *abortFlag = nullptr) = 0;
+    virtual bool Init(const vector<string>& Parameters) = 0;
     void Attach(IObserver* grindcontroller_) {gridcontroller = grindcontroller_;}
-    void Detach();
+    virtual vector<int> getPath() = 0;
 protected:
     IObserver* gridcontroller;
 };

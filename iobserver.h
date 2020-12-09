@@ -33,6 +33,7 @@ public:
     Point dst;
     int numberOfRows = 0;
     int numberOfColumns = 0;
+    unsigned int numberOfVisitedNodes = 0;
 };
 
 #endif // IOBSERVER_H

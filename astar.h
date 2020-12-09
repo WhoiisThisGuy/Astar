@@ -48,8 +48,8 @@ class Astar : public IPathfinder
 public:
     virtual ~Astar(){cout<<"Astar destroyed."<<endl;}
     Astar(){}
-    int StartSearch() override;
-    bool Init(vector<string> Parameters) override;
+    int StartSearch(bool *abortFlag = nullptr) override;
+    bool Init(const vector<string>& Parameters) override;
     bool isValid(int row, int col);
     bool isUnBlocked(int row, int col);
     bool isDestination(int row, int col, Pair dest);
@@ -65,7 +65,6 @@ public:
    vector<int> getPath() override;
 
 private:
-
     multimap<int, AstarPoint,std::less<int>> open_list;
 
     unique_ptr<bool[]> closedList;
